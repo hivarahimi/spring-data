@@ -1,0 +1,31 @@
+spring:
+  profiles: dev
+  liquibase:
+    enabled: false
+    contexts: test,ddl
+    change-log: classpath:db/changelog/changelog-master.xml
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.DB2Dialect
+        default_schema: SPRING_DATA
+  datasource:
+    driver-class-name: com.ibm.db2.jcc.DB2Driver
+    url: jdbc:db2://192.168.99.102:50000/dbpro
+    username: db2inst1
+    password: crdpass1
+---
+spring:
+  profiles: h2
+  liquibase:
+    enabled: false
+    contexts: test,ddl
+    change-log: classpath:db/changelog/changelog-master.xml
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
